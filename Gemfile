@@ -70,3 +70,5 @@ gem 'haml'
 gem "haml-rails"
 
 gem 'jquery-rails'
+
+gem 'devise'

@@ -1,15 +1,16 @@
 class AppointmentsController < ApplicationController
+  before_action :authenticate_user!
   def index
-     @appointments = Appointment.order('appointment_time ASC')
-     @appointment = Appointment.new
+     @appointments = current_user.appointments.order('appointment_time ASC')
+     @appointment = current_user.appointments.new
   end
 
   def create
-    @appointment = Appointment.new(appointment_params)
-    if @appointment.save
+    @appointment = current_user.appointments.new(appointment_params)
+    if @current_user.appointments.save
       render json: @appointment
     else
-      render json: @appointment.errors
+      render json: @current_user.appointments.errors
     end
   end
 
